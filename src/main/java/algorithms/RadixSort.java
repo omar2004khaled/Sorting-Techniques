@@ -1,17 +1,18 @@
 package main.java.algorithms;
 
 import java.util.Arrays;
+import java.util.ArrayList;
 
 public class RadixSort implements SortingAlgorithm {
-    public static int[][] sort(int[] array, boolean returnIntermediate) {
+    public static ArrayList<int[]> sort(int[] array, boolean returnIntermediate) {
         if (!returnIntermediate) {
-            // Only return the final sorted array
             int[] tempArray = Arrays.copyOf(array, array.length);
             radixSort(tempArray);
-            return new int[][] { tempArray };
+            ArrayList<int[]> arr = new ArrayList<int[]>();
+            arr.add(tempArray) ;
+            return arr ;
         } else {
-            // Return intermediate arrays
-            int[][] intermediateArrays = new int[array.length][];
+            ArrayList<int[]>intermediateArrays = new ArrayList<int[]>();
             int[] tempArray = Arrays.copyOf(array, array.length);
             radixSort(tempArray, intermediateArrays);
             return intermediateArrays;
@@ -25,11 +26,12 @@ public class RadixSort implements SortingAlgorithm {
         }
     }
 
-    private static void radixSort(int[] array, int[][] intermediateArrays) {
+    private static void radixSort(int[] array, ArrayList<int[]> intermediateArrays) {
         int max = Arrays.stream(array).max().getAsInt();
         for (int exp = 1; max / exp > 0; exp *= 10) {
             countingSort(array, exp);
-            intermediateArrays[exp] = Arrays.copyOf(array, array.length);
+            //intermediateArrays[exp] = Arrays.copyOf(array, array.length);
+            intermediateArrays.add(array);
         }
     }
 

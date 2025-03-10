@@ -3,6 +3,7 @@ package main.java;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -50,7 +51,7 @@ public class Main {
                 long TimeElapsed; 
                 long start ;
                 long finish;
-                int[][] result;
+                ArrayList<int[]> result = new ArrayList<int[]>();
                 switch (choice) {
                     case 1:
                         start = System.nanoTime();
@@ -75,10 +76,19 @@ public class Main {
                         continue;
                 }
 
-                System.out.println("Result:");
-                for (int[] arr : result) {
+                if(returnIntermediate)
+                 {
+                System.out.println("Intermediate arrays:");
+                for (int[] arr : result) 
                     System.out.println(Arrays.toString(arr));
+                System.out.println("Final sorted array :");    
+                System.out.println(Arrays.toString(result.getLast()));    
                 }
+                 else
+                 {
+                    System.out.println("Final sorted array :");
+                    System.out.println(Arrays.toString(result.getFirst()));
+                 }
                 System.out.println("\u001B[34mTime Taken = " + TimeElapsed + " µs\u001B[0m");
                 System.out.println("============================");
             }
@@ -90,7 +100,6 @@ public class Main {
     private static int[] readArrayFromFile(String filePath) throws FileNotFoundException {
         Scanner scanner = new Scanner(new File(filePath));
         String line = scanner.nextLine().trim();
-        line = line.substring(1,line.length()-1);  //ignore two brackets
         String[] elements = line.split(",");            //ignore commas
         int[] array = new int[elements.length];
         for (int i = 0; i < elements.length; i++) {

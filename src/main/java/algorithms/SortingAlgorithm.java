@@ -1,7 +1,9 @@
 package main.java.algorithms;
 
+import java.util.ArrayList;
+
 public interface SortingAlgorithm {
-    static int[][] sort(int[] array, boolean returnIntermediate) {
-        return new int[0][0]; // Default implementation (can be overridden)
+    static ArrayList<int[]> sort(int[] array, boolean returnIntermediate) {
+        return new ArrayList<int[]>();
     }
 }

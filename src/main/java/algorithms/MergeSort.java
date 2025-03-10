@@ -1,24 +1,26 @@
 package main.java.algorithms;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MergeSort implements SortingAlgorithm {
-    public static int[][] sort(int[] array, boolean returnIntermediate) {
+    public static ArrayList<int[]> sort(int[] array, boolean returnIntermediate) {
         if (!returnIntermediate) {
-            // Only return the final sorted array
             int[] tempArray = Arrays.copyOf(array, array.length);
             mergeSort(tempArray, 0, tempArray.length - 1);
-            return new int[][] { tempArray };
+            ArrayList<int[]> arr = new ArrayList<int[]>();
+            arr.add(tempArray) ;
+            return arr ;
         } else {
-            // Return intermediate arrays
-            int[][] intermediateArrays = new int[array.length][];
+            ArrayList<int[]>intermediateArrays = new ArrayList<int[]>();
+            intermediateArrays.add(array);
             int[] tempArray = Arrays.copyOf(array, array.length);
             mergeSort(tempArray, 0, tempArray.length - 1, intermediateArrays);
             return intermediateArrays;
         }
     }
 
-    private static void mergeSort(int[] array, int left, int right) {
+    private static void mergeSort(int[] array, int left, int right) {            //with no intermediates arrays
         if (left < right) {
             int mid = (left + right) / 2;
             mergeSort(array, left, mid);
@@ -27,15 +29,15 @@ public class MergeSort implements SortingAlgorithm {
         }
     }
 
-    private static void mergeSort(int[] array, int left, int right, int[][] intermediateArrays) {
+    private static void mergeSort(int[] array, int left, int right, ArrayList<int[]> intermediateArrays) {
         if (left < right) {
-            int mid = (left + right) / 2;
+            int mid = left +(right-left)  / 2;
             mergeSort(array, left, mid, intermediateArrays);
             mergeSort(array, mid + 1, right, intermediateArrays);
             merge(array, left, mid, right);
+            
+            intermediateArrays.add(Arrays.copyOf(array, array.length));
 
-            // Store the intermediate array
-            intermediateArrays[left] = Arrays.copyOf(array, array.length);
         }
     }
 
@@ -45,20 +47,29 @@ public class MergeSort implements SortingAlgorithm {
 
         while (i <= mid && j <= right) {
             if (array[i] <= array[j]) {
-                temp[k++] = array[i++];
+                temp[k] = array[i];
+                k++;
+                i++;
             } else {
-                temp[k++] = array[j++];
+                temp[k] = array[j];
+                k++;
+                j++;
             }
         }
 
         while (i <= mid) {
-            temp[k++] = array[i++];
+            temp[k] = array[i];
+            k++;
+            i++;
         }
 
         while (j <= right) {
-            temp[k++] = array[j++];
+            temp[k] = array[j];
+            k++;
+            j++;
         }
 
         System.arraycopy(temp, 0, array, left, temp.length);
     }
 }
+

@@ -1,18 +1,21 @@
 package main.java.algorithms;
 
 import java.util.Arrays;
+import java.util.ArrayList;
+
 
 public class InsertionSort implements SortingAlgorithm {
-    public static int[][] sort(int[] array, boolean returnIntermediate) {
+    public static ArrayList<int[]> sort(int[] array, boolean returnIntermediate) {
         if (!returnIntermediate) {
-            // Only return the final sorted array
             int[] tempArray = Arrays.copyOf(array, array.length);
             insertionSort(tempArray);
-            return new int[][] { tempArray };
+            ArrayList<int[]> arr = new ArrayList<int[]>();
+            arr.add(tempArray) ;
+            return arr ;
         } else {
-            // Return intermediate arrays
-            int[][] intermediateArrays = new int[array.length][];
+            ArrayList<int[]>intermediateArrays = new ArrayList<int[]>();
             int[] tempArray = Arrays.copyOf(array, array.length);
+            intermediateArrays.add(array);
 
             for (int i = 1; i < tempArray.length; i++) {
                 int key = tempArray[i];
@@ -22,14 +25,15 @@ public class InsertionSort implements SortingAlgorithm {
                     j--;
                 }
                 tempArray[j + 1] = key;
+                intermediateArrays.add(Arrays.copyOf(tempArray, tempArray.length));
 
-                // Store the intermediate array
-                intermediateArrays[i] = Arrays.copyOf(tempArray, tempArray.length);
+                //intermediateArrays[i] = Arrays.copyOf(tempArray, tempArray.length);
             }
 
             return intermediateArrays;
         }
     }
+
 
     private static void insertionSort(int[] array) {
         for (int i = 1; i < array.length; i++) {
