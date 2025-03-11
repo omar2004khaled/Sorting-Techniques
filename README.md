@@ -8,4 +8,4 @@ This project implements and compares three sorting algorithms:
 ## How to Run
 1. Compile and run `Main.java`.
 2. Provide the path to the input file (e.g., `input.txt`).
-3. Choose a sorting algorithm and whether to return intermediate arrays.
+3. Choose a sorting algorithm and whether to return intermediate arrays. 
