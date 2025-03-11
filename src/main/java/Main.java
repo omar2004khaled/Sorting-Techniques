@@ -82,12 +82,12 @@ public class Main {
                 for (int[] arr : result) 
                     System.out.println(Arrays.toString(arr));
                 System.out.println("Final sorted array :");    
-                System.out.println(Arrays.toString(result.getLast()));    
+                System.out.println(Arrays.toString(result.get(result.size()-1)));    
                 }
                  else
                  {
                     System.out.println("Final sorted array :");
-                    System.out.println(Arrays.toString(result.getFirst()));
+                    System.out.println(Arrays.toString(result.get(0)));
                  }
                 System.out.println("\u001B[34mTime Taken = " + TimeElapsed + " µs\u001B[0m");
                 System.out.println("============================");

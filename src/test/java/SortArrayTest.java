@@ -7,27 +7,446 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 
 public class SortArrayTest {
+    /*Tests for insertion sort */ 
     @Test
-    public void testInsertionSort() {
-        int[] array = { 5, 3, 1, 4, 2 };
+    public void testInsertionSortSortedArray() {
+        int[] array = {1, 2, 3, 4, 5};
         SortArray sortArray = new SortArray(array);
         ArrayList<int[]> result = sortArray.simpleSort(false);
-        assertArrayEquals(new int[] { 1, 2, 3, 4, 5 }, result.getFirst());
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, result.get(0));
     }
 
     @Test
-    public void testMergeSort() {
-        int[] array = { 5, 3, 1, 4, 2 };
+    public void testInsertionSortReverseSortedArray() {
+        int[] array = {5, 4, 3, 2, 1};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.simpleSort(false);
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, result.get(0));
+    }
+
+    @Test
+    public void testInsertionSortAllSameElements() {
+        int[] array = {7, 7, 7, 7, 7};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.simpleSort(false);
+        assertArrayEquals(new int[]{7, 7, 7, 7, 7}, result.get(0));
+    }
+
+    @Test
+    public void testInsertionSortSingleElement() {
+        int[] array = {10};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.simpleSort(false);
+        assertArrayEquals(new int[]{10}, result.get(0));
+    }
+
+    @Test
+    public void testInsertionSortTwoElementsSorted() {
+        int[] array = {1, 2};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.simpleSort(false);
+        assertArrayEquals(new int[]{1, 2}, result.get(0));
+    }
+
+    @Test
+    public void testInsertionSortTwoElementsUnsorted() {
+        int[] array = {2, 1};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.simpleSort(false);
+        assertArrayEquals(new int[]{1, 2}, result.get(0));
+    }
+
+    @Test
+    public void testInsertionSortLargeNumbers() {
+        int[] array = {1000, 500, 2000, 1500, 750};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.simpleSort(false);
+        assertArrayEquals(new int[]{500, 750, 1000, 1500, 2000}, result.get(0));
+    }
+
+    @Test
+    public void testInsertionSortNegativeNumbers() {
+        int[] array = {-3, -1, -4, -2, -5};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.simpleSort(false);
+        assertArrayEquals(new int[]{-5, -4, -3, -2, -1}, result.get(0));
+    }
+
+    @Test
+    public void testInsertionSortMixedNumbers() {
+        int[] array = {-2, 5, 0, -1, 3};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.simpleSort(false);
+        assertArrayEquals(new int[]{-2, -1, 0, 3, 5}, result.get(0));
+    }
+
+    @Test
+    public void testInsertionSortArrayWithZero() {
+        int[] array = {0, -1, 2, -3, 1};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.simpleSort(false);
+        assertArrayEquals(new int[]{-3, -1, 0, 1, 2}, result.get(0));
+    }
+
+    @Test
+    public void testInsertionSortArrayWithDuplicates() {
+        int[] array = {4, 2, 2, 1, 4};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.simpleSort(false);
+        assertArrayEquals(new int[]{1, 2, 2, 4, 4}, result.get(0));
+    }
+
+    @Test
+    public void testInsertionSortAlreadySortedArray() {
+        int[] array = {10, 20, 30, 40, 50};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.simpleSort(false);
+        assertArrayEquals(new int[]{10, 20, 30, 40, 50}, result.get(0));
+    }
+
+    @Test
+    public void testInsertionSortDescendingArray() {
+        int[] array = {9, 8, 7, 6, 5};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.simpleSort(false);
+        assertArrayEquals(new int[]{5, 6, 7, 8, 9}, result.get(0));
+    }
+
+    @Test
+    public void testInsertionSortAlternatingNumbers() {
+        int[] array = {3, 1, 4, 2, 5};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.simpleSort(false);
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, result.get(0));
+    }
+
+    @Test
+    public void testInsertionSortLargeArray() {
+        int[] array = {50, 40, 30, 20, 10, 0, -10, -20, -30, -40, -50};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.simpleSort(false);
+        assertArrayEquals(new int[]{-50, -40, -30, -20, -10, 0, 10, 20, 30, 40, 50}, result.get(0));
+    }
+
+    @Test
+    public void testInsertionSortArrayContainingMaxMinInteger() {
+        int[] array = {Integer.MAX_VALUE, Integer.MIN_VALUE, 0, -1, 1};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.simpleSort(false);
+        assertArrayEquals(new int[]{Integer.MIN_VALUE, -1, 0, 1, Integer.MAX_VALUE}, result.get(0));
+    }
+
+    @Test
+    public void testInsertionSortArrayWithOneNegativeAtEnd() {
+        int[] array = {3, 1, 2, 4, -5};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.simpleSort(false);
+        assertArrayEquals(new int[]{-5, 1, 2, 3, 4}, result.get(0));
+    }
+
+    @Test
+    public void testInsertionSortEmptyArray() {
+        int[] array = {};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.simpleSort(false);
+        assertArrayEquals(new int[]{}, result.get(0));
+    }
+
+    @Test
+    public void testInsertionSortVeryLargeNumbers() {
+        int[] array = {1000000000, -1000000000, 500000000, -500000000, 0};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.simpleSort(false);
+        assertArrayEquals(new int[]{-1000000000, -500000000, 0, 500000000, 1000000000}, result.get(0));
+    }
+    /*Tests for Merge sort */ 
+    @Test
+    public void testMergeSortSortedArray() {
+        int[] array = {1, 2, 3, 4, 5};
         SortArray sortArray = new SortArray(array);
         ArrayList<int[]> result = sortArray.efficientSort(false);
-        assertArrayEquals(new int[] { 1, 2, 3, 4, 5 }, result.getFirst());
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, result.get(0));
     }
 
     @Test
-    public void testRadixSort() {
-        int[] array = { 170, 45, 75, 90, 802, 24, 2, 66 };
+    public void testMergeSortReverseSortedArray() {
+        int[] array = {5, 4, 3, 2, 1};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.efficientSort(false);
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, result.get(0));
+    }
+
+    @Test
+    public void testMergeSortAllSameElements() {
+        int[] array = {7, 7, 7, 7, 7};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.efficientSort(false);
+        assertArrayEquals(new int[]{7, 7, 7, 7, 7}, result.get(0));
+    }
+
+    @Test
+    public void testMergeSortSingleElement() {
+        int[] array = {10};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.efficientSort(false);
+        assertArrayEquals(new int[]{10}, result.get(0));
+    }
+
+    @Test
+    public void testMergeSortTwoElementsSorted() {
+        int[] array = {1, 2};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.efficientSort(false);
+        assertArrayEquals(new int[]{1, 2}, result.get(0));
+    }
+
+    @Test
+    public void testMergeSortTwoElementsUnsorted() {
+        int[] array = {2, 1};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.efficientSort(false);
+        assertArrayEquals(new int[]{1, 2}, result.get(0));
+    }
+
+    @Test
+    public void testMergeSortLargeNumbers() {
+        int[] array = {1000, 500, 2000, 1500, 750};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.efficientSort(false);
+        assertArrayEquals(new int[]{500, 750, 1000, 1500, 2000}, result.get(0));
+    }
+
+    @Test
+    public void testMergeSortNegativeNumbers() {
+        int[] array = {-3, -1, -4, -2, -5};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.efficientSort(false);
+        assertArrayEquals(new int[]{-5, -4, -3, -2, -1}, result.get(0));
+    }
+
+    @Test
+    public void testMergeSortMixedNumbers() {
+        int[] array = {-2, 5, 0, -1, 3};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.efficientSort(false);
+        assertArrayEquals(new int[]{-2, -1, 0, 3, 5}, result.get(0));
+    }
+
+    @Test
+    public void testMergeSortArrayWithZero() {
+        int[] array = {0, -1, 2, -3, 1};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.efficientSort(false);
+        assertArrayEquals(new int[]{-3, -1, 0, 1, 2}, result.get(0));
+    }
+
+    @Test
+    public void testMergeSortArrayWithDuplicates() {
+        int[] array = {4, 2, 2, 1, 4};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.efficientSort(false);
+        assertArrayEquals(new int[]{1, 2, 2, 4, 4}, result.get(0));
+    }
+
+    @Test
+    public void testMergeSortAlreadySortedArray() {
+        int[] array = {10, 20, 30, 40, 50};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.efficientSort(false);
+        assertArrayEquals(new int[]{10, 20, 30, 40, 50}, result.get(0));
+    }
+
+    @Test
+    public void testMergeSortDescendingArray() {
+        int[] array = {9, 8, 7, 6, 5};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.efficientSort(false);
+        assertArrayEquals(new int[]{5, 6, 7, 8, 9}, result.get(0));
+    }
+
+    @Test
+    public void testMergeSortAlternatingNumbers() {
+        int[] array = {3, 1, 4, 2, 5};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.efficientSort(false);
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, result.get(0));
+    }
+
+    @Test
+    public void testMergeSortLargeArray() {
+        int[] array = {50, 40, 30, 20, 10, 0, -10, -20, -30, -40, -50};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.efficientSort(false);
+        assertArrayEquals(new int[]{-50, -40, -30, -20, -10, 0, 10, 20, 30, 40, 50}, result.get(0));
+    }
+
+    @Test
+    public void testMergeSortArrayContainingMaxMinInteger() {
+        int[] array = {Integer.MAX_VALUE, Integer.MIN_VALUE, 0, -1, 1};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.efficientSort(false);
+        assertArrayEquals(new int[]{Integer.MIN_VALUE, -1, 0, 1, Integer.MAX_VALUE}, result.get(0));
+    }
+
+    @Test
+    public void testMergeSortArrayWithOneNegativeAtEnd() {
+        int[] array = {3, 1, 2, 4, -5};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.efficientSort(false);
+        assertArrayEquals(new int[]{-5, 1, 2, 3, 4}, result.get(0));
+    }
+
+    @Test
+    public void testMergeSortEmptyArray() {
+        int[] array = {};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.efficientSort(false);
+        assertArrayEquals(new int[]{}, result.get(0));
+    }
+
+    @Test
+    public void testMergeSortVeryLargeNumbers() {
+        int[] array = {1000000000, -1000000000, 500000000, -500000000, 0};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.efficientSort(false);
+        assertArrayEquals(new int[]{-1000000000, -500000000, 0, 500000000, 1000000000}, result.get(0));
+    }
+
+    @Test
+    public void testMergeSortArrayWithRepeatedPatterns() {
+        int[] array = {2, 1, 2, 1, 2, 1, 2, 1};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.efficientSort(false);
+        assertArrayEquals(new int[]{1, 1, 1, 1, 2, 2, 2, 2}, result.get(0));
+    }
+    /*Tests for Radix sort */ 
+    @Test
+    public void testRadixSortSortedArray() {
+        int[] array = {1, 2, 3, 4, 5};
         SortArray sortArray = new SortArray(array);
         ArrayList<int[]> result = sortArray.nonComparisonSort(false);
-        assertArrayEquals(new int[] { 2, 24, 45, 66, 75, 90, 170, 802 }, result.getFirst());
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, result.get(0));
+    }
+
+    @Test
+    public void testRadixSortReverseSortedArray() {
+        int[] array = {5, 4, 3, 2, 1};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.nonComparisonSort(false);
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, result.get(0));
+    }
+
+    @Test
+    public void testRadixSortAllSameElements() {
+        int[] array = {7, 7, 7, 7, 7};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.nonComparisonSort(false);
+        assertArrayEquals(new int[]{7, 7, 7, 7, 7}, result.get(0));
+    }
+
+    @Test
+    public void testRadixSortSingleElement() {
+        int[] array = {10};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.nonComparisonSort(false);
+        assertArrayEquals(new int[]{10}, result.get(0));
+    }
+
+    @Test
+    public void testRadixSortTwoElementsSorted() {
+        int[] array = {1, 2};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.nonComparisonSort(false);
+        assertArrayEquals(new int[]{1, 2}, result.get(0));
+    }
+
+    @Test
+    public void testRadixSortTwoElementsUnsorted() {
+        int[] array = {2, 1};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.nonComparisonSort(false);
+        assertArrayEquals(new int[]{1, 2}, result.get(0));
+    }
+
+    @Test
+    public void testRadixSortLargeNumbers() {
+        int[] array = {1000, 500, 2000, 1500, 750};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.nonComparisonSort(false);
+        assertArrayEquals(new int[]{500, 750, 1000, 1500, 2000}, result.get(0));
+    }
+
+    @Test
+    public void testRadixSortMixedNumbers() {
+        int[] array = {170, 45, 75, 90, 802, 24, 2, 66};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.nonComparisonSort(false);
+        assertArrayEquals(new int[]{2, 24, 45, 66, 75, 90, 170, 802}, result.get(0));
+    }
+
+    @Test
+    public void testRadixSortArrayWithZero() {
+        int[] array = {0, 5, 3, 1, 4, 2};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.nonComparisonSort(false);
+        assertArrayEquals(new int[]{0, 1, 2, 3, 4, 5}, result.get(0));
+    }
+
+    @Test
+    public void testRadixSortArrayWithDuplicates() {
+        int[] array = {4, 2, 2, 1, 4};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.nonComparisonSort(false);
+        assertArrayEquals(new int[]{1, 2, 2, 4, 4}, result.get(0));
+    }
+
+    @Test
+    public void testRadixSortAlreadySortedArray() {
+        int[] array = {10, 20, 30, 40, 50};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.nonComparisonSort(false);
+        assertArrayEquals(new int[]{10, 20, 30, 40, 50}, result.get(0));
+    }
+
+    @Test
+    public void testRadixSortLargeArray() {
+        int[] array = {1000, 999, 998, 997, 996, 995, 994, 993, 992, 991};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.nonComparisonSort(false);
+        assertArrayEquals(new int[]{991, 992, 993, 994, 995, 996, 997, 998, 999, 1000}, result.get(0));
+    }
+
+
+
+    @Test
+    public void testRadixSortVeryLargeNumbers() {
+        int[] array = {1000000000, 500000000, 200000000, 700000000, 900000000};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.nonComparisonSort(false);
+        assertArrayEquals(new int[]{200000000, 500000000, 700000000, 900000000, 1000000000}, result.get(0));
+    }
+
+    @Test
+    public void testRadixSortAlternatingNumbers() {
+        int[] array = {3, 1, 4, 2, 5};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.nonComparisonSort(false);
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, result.get(0));
+    }
+
+    @Test
+    public void testRadixSortMixedLargeAndSmall() {
+        int[] array = {1000, 1, 500, 250, 750};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.nonComparisonSort(false);
+        assertArrayEquals(new int[]{1, 250, 500, 750, 1000}, result.get(0));
+    }
+
+    @Test
+    public void testRadixSortArrayWithRepeatedPatterns() {
+        int[] array = {2, 1, 2, 1, 2, 1, 2, 1};
+        SortArray sortArray = new SortArray(array);
+        ArrayList<int[]> result = sortArray.nonComparisonSort(false);
+        assertArrayEquals(new int[]{1, 1, 1, 1, 2, 2, 2, 2}, result.get(0));
     }
 }
