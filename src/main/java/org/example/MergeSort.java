@@ -9,20 +9,19 @@ public class MergeSort {
         if (returnIntermediate)
             intermediateArrays.add(Arrays.copyOf(array, array.length));
 
-        mergeSort(array, 0, array.length - 1, intermediateArrays, returnIntermediate);
+        mergeSort(array, 0, array.length-1, intermediateArrays, returnIntermediate);
 
         if (!returnIntermediate)
             intermediateArrays.add(Arrays.copyOf(array, array.length));
         return intermediateArrays;
     }
 
-    private static void mergeSort(int[] array, int left, int right, ArrayList<int[]> intermediateArrays,
-            boolean returnIntermediate) {
+    private static void mergeSort(int[] array, int left, int right, ArrayList<int[]> intermediateArrays, boolean returnIntermediate) {
         if (left < right) {
-            int mid = (left + right) / 2;
+            int mid = (left + right)/2;
             mergeSort(array, left, mid, intermediateArrays, returnIntermediate);
-            mergeSort(array, mid + 1, right, intermediateArrays, returnIntermediate);
-            merge(array, left, mid, right);
+            mergeSort(array, mid+1, right, intermediateArrays, returnIntermediate);
+            merge(array,left,mid,right);
 
             if (returnIntermediate)
                 intermediateArrays.add(Arrays.copyOf(array, array.length));
@@ -30,27 +29,27 @@ public class MergeSort {
     }
 
     private static void merge(int[] array, int left, int mid, int right) {
-        int[] temp = new int[right - left + 1];
-        int i = left, j = mid + 1, k = 0;
-
-        while (i <= mid && j <= right) {
-            if (array[i] <= array[j]) {
-                temp[k++] = array[i++];
-            } else {
-                temp[k++] = array[j++];
+        int interval[] = new int[right - left +1];
+        int i = left;
+        int j = mid+1;
+        int k = 0;
+        while(i <= mid && j <= right){
+            if(array[i] <= array[j]){
+                interval[k++] = array[i++];
             }
+            else{
+                interval[k++] = array[j++];
+            }            
         }
-
-        while (i <= mid) {
-            temp[k++] = array[i++];
+        while(i <= mid){
+            interval[k++] = array[i++];
         }
-
-        while (j <= right) {
-            temp[k++] = array[j++];
+        while(j <= right){
+            interval[k++] = array[j++];
         }
-
-        for (i = left, k = 0; i <= right; i++, k++) {
-            array[i] = temp[k];
+        i =left;
+        for(int m = 0; i <= right ; m++){
+            array[i++] = interval[m];
         }
     }
 }
