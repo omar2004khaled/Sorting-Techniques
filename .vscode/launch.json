@@ -9,6 +9,13 @@
             "name": "Main",
             "request": "launch",
             "mainClass": "main.java.org.example.Main",
+            "projectName": "Sorting-Techniques_d7e5b2a4"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "main.java.org.example.Main",
             "projectName": "Assignment1_5bbfd162"
         },
         {
