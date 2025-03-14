@@ -17,9 +17,9 @@ public class SortingComparisonTest {
         {
             long totalTime = 0;
             ArrayList<int[]> result = new ArrayList<>();    
-            int repeat = 50 ;
+            int repeat = 10 ;
             for(int i=0 ;i<repeat ;i++)
-            {       System.gc();
+            {       
                 int[] clonedArray = array.clone();
                 long startTime = System.nanoTime();
                 SortArray InsertionSortArray = new SortArray(clonedArray);
@@ -39,9 +39,9 @@ public class SortingComparisonTest {
         {
             long totalTime = 0;
             ArrayList<int[]> result = new ArrayList<>();    
-            int repeat = 50 ;
+            int repeat = 10 ;
             for(int i=0 ;i<repeat ;i++)
-            {       System.gc();
+            {       
                 int[] clonedArray = array.clone();
                 long startTime = System.nanoTime();
                 SortArray MergeSortArray = new SortArray(clonedArray);
@@ -58,10 +58,10 @@ public class SortingComparisonTest {
 
         public ArrayList<int[]> Test_Radix_Sort(int[] array)
         {
-            System.gc();
+           
             long totalTime = 0;
             ArrayList<int[]> result = new ArrayList<>();    
-            int repeat = 50 ;
+            int repeat = 10 ;
             for(int i=0 ;i<repeat ;i++)
             {
                 int[] clonedArray = array.clone();
@@ -89,6 +89,57 @@ public class SortingComparisonTest {
 
         return list.stream().mapToInt(Integer::intValue).toArray();
     }
+    /*@Test
+    public void diffrent_sizeArrays()
+    {
+        for(int i=1000 ;i<=100000 ;i +=3000)
+        {
+            System.out.println("At array size = "+ i);
+            int[] array = new int[i];
+            int[] sorted_array = new int[i];
+            for(int j=0 ;j<i ;j++)
+            {
+                array[j] = i-j-1 ;
+            } 
+            for(int j=0 ;j<i ;j++)
+             {
+                sorted_array[j] = j ;
+             }
+
+        ArrayList<int[]> result1 = Test_Insertion_Sort(array);
+        ArrayList<int[]> result2 = Test_Merge_Sort(array);
+        ArrayList<int[]> result3 = Test_Radix_Sort(array);
+
+
+        assertArrayEquals(sorted_array, result1.get(0));
+        assertArrayEquals(sorted_array, result2.get(0));
+        assertArrayEquals(sorted_array, result3.get(0));
+        System.out.println("------------------------------------------");
+
+        }
+
+    }*/
+    @Test
+public void LargeSizeArrays_test() {
+    for (int size = 1000; size <= 100000; size += 3000) { 
+        System.out.println("Size Array Test: " + size + " elements");
+        
+        int[] array = generateUniqueRandomArray(size); // Generates a random array of the given size
+
+        ArrayList<int[]> result1 = Test_Insertion_Sort(array);
+        ArrayList<int[]> result2 = Test_Merge_Sort(array);
+        ArrayList<int[]> result3 = Test_Radix_Sort(array);
+
+        int[] sortedArray = array.clone();
+        Arrays.sort(sortedArray); // Java's built-in sort to get expected sorted result
+
+        assertArrayEquals(sortedArray, result1.get(0));
+        assertArrayEquals(sortedArray, result2.get(0));
+        assertArrayEquals(sortedArray, result3.get(0));
+        
+        System.out.println("------------------------------------------");
+    }
+}
  
     @Test
     public void BestCase_test() {
