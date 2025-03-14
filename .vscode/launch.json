@@ -9,7 +9,11 @@
             "name": "Main",
             "request": "launch",
             "mainClass": "main.java.org.example.Main",
+<<<<<<< HEAD
             "projectName": "Sorting-Techniques_1968a15a"
+=======
+            "projectName": "Sorting-Techniques_d7e5b2a4"
+>>>>>>> 3a717646e6867fa5f53caf9b5f851a3a45ca3c3f
         },
         {
             "type": "java",

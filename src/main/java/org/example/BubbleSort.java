@@ -20,7 +20,7 @@ public class BubbleSort {
             if (returnIntermediate)
                 intermediateArrays.add(Arrays.copyOf(array, array.length));
         }
-
+        
         if (!returnIntermediate)
             intermediateArrays.add(Arrays.copyOf(array, array.length));
         return intermediateArrays;
