@@ -7,50 +7,75 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class SortingComparisonTest {
 
 
-        long startTime, endTime, duration;
-
-        // Test insertion sort
         public ArrayList<int[]> Test_Insertion_Sort(int[] array)
         {
-        int[] clonedArray = array.clone();
-        startTime = System.nanoTime();
-        SortArray InsertionSortArray = new SortArray(clonedArray);
-        ArrayList<int[]> result = InsertionSortArray.simpleSort(false,"InsertionSort");       
-        endTime = System.nanoTime();
-        duration = endTime - startTime;
-        System.out.println("Insertion sort: " + duration + " nanoseconds.");
-        return result ;
+            long totalTime = 0;
+            ArrayList<int[]> result = new ArrayList<>();    
+            int repeat = 50 ;
+            for(int i=0 ;i<repeat ;i++)
+            {       System.gc();
+                int[] clonedArray = array.clone();
+                long startTime = System.nanoTime();
+                SortArray InsertionSortArray = new SortArray(clonedArray);
+                ArrayList<int[]> temp = InsertionSortArray.simpleSort(false,"InsertionSort");       
+                long endTime = System.nanoTime();
+                totalTime += (endTime - startTime);
+                if (i == repeat-1)  
+                    result = temp;
+                
+            }
+                long averageTime = totalTime / repeat;
+                System.out.println("Insertion sort: " + averageTime/1000 + " micro s");
+                return result ;
         }
 
-        // Test QuickSort
         public ArrayList<int[]> Test_Merge_Sort(int[] array)
         {
-        int[] clonedArray = array.clone();
-        startTime = System.nanoTime();
-        SortArray MergeSortArray = new SortArray(clonedArray);
-        ArrayList<int[]> result = MergeSortArray.efficientSort(false,"MergeSort");       
-        endTime = System.nanoTime();
-        duration = endTime - startTime;
-        System.out.println("Merge sort took: " + duration + " nanoseconds.");
-        return result ;
+            long totalTime = 0;
+            ArrayList<int[]> result = new ArrayList<>();    
+            int repeat = 50 ;
+            for(int i=0 ;i<repeat ;i++)
+            {       System.gc();
+                int[] clonedArray = array.clone();
+                long startTime = System.nanoTime();
+                SortArray MergeSortArray = new SortArray(clonedArray);
+                ArrayList<int[]> temp = MergeSortArray.efficientSort(false,"MergeSort");       
+                long endTime = System.nanoTime();
+                totalTime += (endTime - startTime);
+                if (i == repeat-1)
+                result=temp ;
+            }
+            long averageTime = totalTime / repeat;
+            System.out.println("Merge sort took: " + averageTime/1000 + " micro s");
+            return result; 
         }
 
-        // Test BubbleSort
         public ArrayList<int[]> Test_Radix_Sort(int[] array)
         {
-        int[] clonedArray = array.clone();
-        startTime = System.nanoTime();
-        SortArray SortArrayRadix = new SortArray(clonedArray);
-        ArrayList<int[]> result = SortArrayRadix.nonComparisonSort(false,"RadixSort");
-        endTime = System.nanoTime();
-        duration = endTime - startTime;
-        System.out.println("Radix Sort took: " + duration + " nanoseconds.");
-        return result ;
+            System.gc();
+            long totalTime = 0;
+            ArrayList<int[]> result = new ArrayList<>();    
+            int repeat = 50 ;
+            for(int i=0 ;i<repeat ;i++)
+            {
+                int[] clonedArray = array.clone();
+                long startTime = System.nanoTime();
+                SortArray SortArrayRadix = new SortArray(clonedArray);
+                ArrayList<int[]> temp = SortArrayRadix.nonComparisonSort(false,"RadixSort");
+                long endTime = System.nanoTime();
+                totalTime += (endTime - startTime);
+                if (i == repeat-1)
+                result=temp ;  
+            }
+            long averageTime = totalTime / repeat;
+            System.out.println("Radix Sort took: " + averageTime/1000 + " micro s");
+            return result ;
         }
 
         public int[] generateUniqueRandomArray(int size) 
@@ -126,7 +151,144 @@ public class SortingComparisonTest {
         assertArrayEquals(sorted_array, result3.get(0));
         System.out.println("------------------------------------------");
     }
+    @Test
+    public void oneElement_array() {
+        System.out.println("One element");
+        int[]array = {8};
+        ArrayList<int[]> result1 = Test_Insertion_Sort(array);
+        ArrayList<int[]> result2 = Test_Merge_Sort(array);
+        ArrayList<int[]> result3 = Test_Radix_Sort(array);
 
+        assertArrayEquals(new int[]{8}, result1.get(0));
+        assertArrayEquals(new int[]{8}, result2.get(0));
+        assertArrayEquals(new int[]{8}, result3.get(0));
+        System.out.println("------------------------------------------");
+    }
+    @Test
+    public void LargeElements_array() {
+        System.out.println("LargeElements_array:");
+        int[]array = {70000000 , 10000000 , 20000000 , 30000000 , 90000000 , 60000000};
+        ArrayList<int[]> result1 = Test_Insertion_Sort(array);
+        ArrayList<int[]> result2 = Test_Merge_Sort(array);
+        ArrayList<int[]> result3 = Test_Radix_Sort(array);
+        
+        int[] sorted_array = {10000000 , 20000000 ,30000000 ,60000000 , 70000000 , 90000000};
+        assertArrayEquals(sorted_array, result1.get(0));
+        assertArrayEquals(sorted_array, result2.get(0));
+        assertArrayEquals(sorted_array, result3.get(0));
+        System.out.println("------------------------------------------");
+    }
+    @Test
+    public void NegativeNumbers_array() {
+        System.out.println("NegativeNumbers_array:");
+        int[]array = {-3, -1, -4, -2, -5};
+
+        ArrayList<int[]> result1 = Test_Insertion_Sort(array);
+        ArrayList<int[]> result2 = Test_Merge_Sort(array);
+       // ArrayList<int[]> result3 = Test_Radix_Sort(array);
+        
+        int[] sorted_array = {-5,-4,-3,-2,-1};
+        assertArrayEquals(sorted_array, result1.get(0));
+        assertArrayEquals(sorted_array, result2.get(0));
+        //assertArrayEquals(sorted_array, result3.get(0));
+        System.out.println("------------------------------------------");
+    }
+    @Test
+    public void SameElements_array() {
+        System.out.println("SameElements_array:");
+        int[]array = {5,5,5,5,5,5,5};
+
+        ArrayList<int[]> result1 = Test_Insertion_Sort(array);
+        ArrayList<int[]> result2 = Test_Merge_Sort(array);
+        ArrayList<int[]> result3 = Test_Radix_Sort(array);
+
+        assertArrayEquals(array, result1.get(0));
+        assertArrayEquals(array, result2.get(0));
+        assertArrayEquals(array, result3.get(0));
+        System.out.println("------------------------------------------");
+    }
+    @Test
+    public void MinMaxInteger_test() {
+        System.out.println("Min/Max Integer_array:");
+        int[] array = {Integer.MIN_VALUE, Integer.MAX_VALUE, 0, -1, 1, -500, 500};
+
+        ArrayList<int[]> result1 = Test_Insertion_Sort(array);
+        ArrayList<int[]> result2 = Test_Merge_Sort(array);
+        //ArrayList<int[]> result3 = Test_Radix_Sort(array);
+
+        int[] sortedArray = array.clone();
+        Arrays.sort(sortedArray);
+
+        assertArrayEquals(sortedArray, result1.get(0));
+        assertArrayEquals(sortedArray, result2.get(0));
+        //assertArrayEquals(sortedArray, result3.get(0));
+        System.out.println("------------------------------------------");
+   }
+   @Test
+    public void SmallSizeArray_test() {
+        System.out.println("Small Size Array_array:");
+        int[] array = {5, 1};
+
+        ArrayList<int[]> result1 = Test_Insertion_Sort(array);
+        ArrayList<int[]> result2 = Test_Merge_Sort(array);
+        ArrayList<int[]> result3 = Test_Radix_Sort(array);
+
+        int[] sortedArray = {1, 5};
+
+        assertArrayEquals(sortedArray, result1.get(0));
+        assertArrayEquals(sortedArray, result2.get(0));
+        assertArrayEquals(sortedArray, result3.get(0));
+        System.out.println("------------------------------------------");
+}
+   @Test
+   public void RepeatingNumbers_test() {
+            System.out.println("Repeating Numbers Test:");
+            int[] array = {1, 2, 2, 3, 3, 3, 4, 4, 4, 4};
+
+            ArrayList<int[]> result1 = Test_Insertion_Sort(array);
+            ArrayList<int[]> result2 = Test_Merge_Sort(array);
+            ArrayList<int[]> result3 = Test_Radix_Sort(array);
+
+            assertArrayEquals(array, result1.get(0));
+            assertArrayEquals(array, result2.get(0));
+            assertArrayEquals(array, result3.get(0));
+            System.out.println("------------------------------------------");
+}
+@Test
+   public void smallLastElement_test() {
+    System.out.println("small Last Element Test:");
+    int[] array = {1000, 2000, 3000, 4000, 5000, 6000, 7000, 1};
+
+    ArrayList<int[]> result1 = Test_Insertion_Sort(array);
+    ArrayList<int[]> result2 = Test_Merge_Sort(array);
+    ArrayList<int[]> result3 = Test_Radix_Sort(array);
+
+    int[] sortedArray = {1,1000, 2000, 3000, 4000, 5000, 6000, 7000};
+  
+
+    assertArrayEquals(sortedArray, result1.get(0));
+    assertArrayEquals(sortedArray, result2.get(0));
+    assertArrayEquals(sortedArray, result3.get(0));
+    System.out.println("------------------------------------------");
+}
+  @Test
+  public void AlternatingHighLow_test() {
+    System.out.println("Alternating High & Low Test:");
+    int[] array = {1, 100, 2, 99, 3, 98, 4, 97};
+
+    ArrayList<int[]> result1 = Test_Insertion_Sort(array);
+    ArrayList<int[]> result2 = Test_Merge_Sort(array);
+    ArrayList<int[]> result3 = Test_Radix_Sort(array);
+
+    int[] sortedArray = {1,2,3,4,97,98,99,100};
+    
+
+    assertArrayEquals(sortedArray, result1.get(0));
+    assertArrayEquals(sortedArray, result2.get(0));
+    assertArrayEquals(sortedArray, result3.get(0));
+    System.out.println("------------------------------------------");
+}
+    
   
     }
 
