@@ -16,6 +16,11 @@ public class SortArray {
         this.originalArray = Arrays.copyOf(array, array.length); // Store a copy of the original array
     }
 
+    public SortArray(int[] array) {
+        this.array = Arrays.copyOf(array, array.length);
+        this.originalArray = Arrays.copyOf(array, array.length); // Store a copy of the original array
+    }
+
     // Helper method to read an array from a file
     private int[] readArrayFromFile(String filePath) throws FileNotFoundException {
         Scanner scanner = new Scanner(new File(filePath));
