@@ -33,31 +33,39 @@ public class SortArray {
         scanner.close();
         return array;
     }
-
-    // Reset the array to its original state before sorting
     private void resetArray() {
         this.array = Arrays.copyOf(originalArray, originalArray.length);
     }
 
-    // Simple Sort: O(n²) algorithms
-    public ArrayList<int[]> simpleSort(boolean returnIntermediate) {
+    public ArrayList<int[]> InsertionSort(boolean returnIntermediate) {
         resetArray(); // Reset the array before sorting
-        return InsertionSort.sort(array, returnIntermediate);
-            
+        return InsertionSort.sort(array, returnIntermediate);    
         }
-    
-
-    // Efficient Sort: O(n log n) algorithms
-    public ArrayList<int[]> efficientSort(boolean returnIntermediate) {
+    public ArrayList<int[]> SelectionSort(boolean returnIntermediate) {
+        resetArray(); // Reset the array before sorting
+        return SelectionSort.sort(array, returnIntermediate);    
+        }
+    public ArrayList<int[]> BubbleSort(boolean returnIntermediate) {
+        resetArray(); // Reset the array before sorting
+        return BubbleSort.sort(array, returnIntermediate);    
+        }
+    public ArrayList<int[]> MergeSort(boolean returnIntermediate) {
         resetArray(); // Reset the array before sorting
         return MergeSort.sort(array, returnIntermediate);
            
     }
-
-    // Non-Comparison Sort: O(n) algorithms
-    public ArrayList<int[]> nonComparisonSort(boolean returnIntermediate) {
+    public ArrayList<int[]> QuickSort(boolean returnIntermediate) {
+        resetArray(); // Reset the array before sorting
+        return QuickSort.sort(array, returnIntermediate);
+           
+    }
+    public ArrayList<int[]> RadixSort(boolean returnIntermediate) {
         resetArray(); // Reset the array before sorting
         return RadixSort.sort(array, returnIntermediate);
            
+    }
+    public ArrayList<int[]> CountingSort(boolean returnIntermediate) {
+        resetArray(); // Reset the array before sorting
+        return CountingSort.sort(array, returnIntermediate);     
     }
 }

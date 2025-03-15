@@ -13,7 +13,7 @@ public class InsertionSortTest {
         int[] array = {1, 2, 3, 4, 5};
         SortArray sortArray = new SortArray(array);
         long startTime = System.nanoTime();
-        ArrayList<int[]> result = sortArray.simpleSort(false);
+        ArrayList<int[]> result = sortArray.InsertionSort(false);
         long endTime = System.nanoTime();
         System.out.println("testInsertionSortSortedArray took " + (endTime - startTime) + " ns");
         assertArrayEquals(new int[]{1, 2, 3, 4, 5}, result.get(0));
@@ -24,7 +24,7 @@ public class InsertionSortTest {
         int[] array = {5, 4, 3, 2, 1};
         SortArray sortArray = new SortArray(array);
         long startTime = System.nanoTime();
-        ArrayList<int[]> result = sortArray.simpleSort(false);
+        ArrayList<int[]> result = sortArray.InsertionSort(false);
         long endTime = System.nanoTime();
         System.out.println("testInsertionSortReverseSortedArray took " + (endTime - startTime) + " ns");
         assertArrayEquals(new int[]{1, 2, 3, 4, 5}, result.get(0));
@@ -35,7 +35,7 @@ public class InsertionSortTest {
         int[] array = {7, 7, 7, 7, 7};
         SortArray sortArray = new SortArray(array);
         long startTime = System.nanoTime();
-        ArrayList<int[]> result = sortArray.simpleSort(false);
+        ArrayList<int[]> result = sortArray.InsertionSort(false);
         long endTime = System.nanoTime();
         System.out.println("testInsertionSortAllSameElements took " + (endTime - startTime) + " ns");
         assertArrayEquals(new int[]{7, 7, 7, 7, 7}, result.get(0));
@@ -46,7 +46,7 @@ public class InsertionSortTest {
         int[] array = {10};
         SortArray sortArray = new SortArray(array);
         long startTime = System.nanoTime();
-        ArrayList<int[]> result = sortArray.simpleSort(false);
+        ArrayList<int[]> result = sortArray.InsertionSort(false);
         long endTime = System.nanoTime();
         System.out.println("testInsertionSortSingleElement took " + (endTime - startTime) + " ns");
         assertArrayEquals(new int[]{10}, result.get(0));
@@ -57,7 +57,7 @@ public class InsertionSortTest {
         int[] array = {1, 2};
         SortArray sortArray = new SortArray(array);
         long startTime = System.nanoTime();
-        ArrayList<int[]> result = sortArray.simpleSort(false);
+        ArrayList<int[]> result = sortArray.InsertionSort(false);
         long endTime = System.nanoTime();
         System.out.println("testInsertionSortTwoElementsSorted took " + (endTime - startTime) + " ns");
         assertArrayEquals(new int[]{1, 2}, result.get(0));
@@ -68,7 +68,7 @@ public class InsertionSortTest {
         int[] array = {2, 1};
         SortArray sortArray = new SortArray(array);
         long startTime = System.nanoTime();
-        ArrayList<int[]> result = sortArray.simpleSort(false);
+        ArrayList<int[]> result = sortArray.InsertionSort(false);
         long endTime = System.nanoTime();
         System.out.println("testInsertionSortTwoElementsUnsorted took " + (endTime - startTime) + " ns");
         assertArrayEquals(new int[]{1, 2}, result.get(0));
@@ -79,7 +79,7 @@ public class InsertionSortTest {
         int[] array = {1000, 500, 2000, 1500, 750};
         SortArray sortArray = new SortArray(array);
         long startTime = System.nanoTime();
-        ArrayList<int[]> result = sortArray.simpleSort(false);
+        ArrayList<int[]> result = sortArray.InsertionSort(false);
         long endTime = System.nanoTime();
         System.out.println("testInsertionSortLargeNumbers took " + (endTime - startTime) + " ns");
         assertArrayEquals(new int[]{500, 750, 1000, 1500, 2000}, result.get(0));
@@ -90,7 +90,7 @@ public class InsertionSortTest {
         int[] array = {-3, -1, -4, -2, -5};
         SortArray sortArray = new SortArray(array);
         long startTime = System.nanoTime();
-        ArrayList<int[]> result = sortArray.simpleSort(false);
+        ArrayList<int[]> result = sortArray.InsertionSort(false);
         long endTime = System.nanoTime();
         System.out.println("testInsertionSortNegativeNumbers took " + (endTime - startTime) + " ns");
         assertArrayEquals(new int[]{-5, -4, -3, -2, -1}, result.get(0));
@@ -101,7 +101,7 @@ public class InsertionSortTest {
         int[] array = {-2, 5, 0, -1, 3};
         SortArray sortArray = new SortArray(array);
         long startTime = System.nanoTime();
-        ArrayList<int[]> result = sortArray.simpleSort(false);
+        ArrayList<int[]> result = sortArray.InsertionSort(false);
         long endTime = System.nanoTime();
         System.out.println("testInsertionSortMixedNumbers took " + (endTime - startTime) + " ns");
         assertArrayEquals(new int[]{-2, -1, 0, 3, 5}, result.get(0));
@@ -112,7 +112,7 @@ public class InsertionSortTest {
         int[] array = {0, -1, 2, -3, 1};
         SortArray sortArray = new SortArray(array);
         long startTime = System.nanoTime();
-        ArrayList<int[]> result = sortArray.simpleSort(false);
+        ArrayList<int[]> result = sortArray.InsertionSort(false);
         long endTime = System.nanoTime();
         System.out.println("testInsertionSortArrayWithZero took " + (endTime - startTime) + " ns");
         assertArrayEquals(new int[]{-3, -1, 0, 1, 2}, result.get(0));
@@ -123,7 +123,7 @@ public class InsertionSortTest {
         int[] array = {4, 2, 2, 1, 4};
         SortArray sortArray = new SortArray(array);
         long startTime = System.nanoTime();
-        ArrayList<int[]> result = sortArray.simpleSort(false);
+        ArrayList<int[]> result = sortArray.InsertionSort(false);
         long endTime = System.nanoTime();
         System.out.println("testInsertionSortArrayWithDuplicates took " + (endTime - startTime) + " ns");
         assertArrayEquals(new int[]{1, 2, 2, 4, 4}, result.get(0));
@@ -134,7 +134,7 @@ public class InsertionSortTest {
         int[] array = {10, 20, 30, 40, 50};
         SortArray sortArray = new SortArray(array);
         long startTime = System.nanoTime();
-        ArrayList<int[]> result = sortArray.simpleSort(false);
+        ArrayList<int[]> result = sortArray.InsertionSort(false);
         long endTime = System.nanoTime();
         System.out.println("testInsertionSortAlreadySortedArray took " + (endTime - startTime) + " ns");
         assertArrayEquals(new int[]{10, 20, 30, 40, 50}, result.get(0));
@@ -145,7 +145,7 @@ public class InsertionSortTest {
         int[] array = {9, 8, 7, 6, 5};
         SortArray sortArray = new SortArray(array);
         long startTime = System.nanoTime();
-        ArrayList<int[]> result = sortArray.simpleSort(false);
+        ArrayList<int[]> result = sortArray.InsertionSort(false);
         long endTime = System.nanoTime();
         System.out.println("testInsertionSortDescendingArray took " + (endTime - startTime) + " ns");
         assertArrayEquals(new int[]{5, 6, 7, 8, 9}, result.get(0));
@@ -156,7 +156,7 @@ public class InsertionSortTest {
         int[] array = {3, 1, 4, 2, 5};
         SortArray sortArray = new SortArray(array);
         long startTime = System.nanoTime();
-        ArrayList<int[]> result = sortArray.simpleSort(false);
+        ArrayList<int[]> result = sortArray.InsertionSort(false);
         long endTime = System.nanoTime();
         System.out.println("testInsertionSortAlternatingNumbers took " + (endTime - startTime) + " ns");
         assertArrayEquals(new int[]{1, 2, 3, 4, 5}, result.get(0));
@@ -167,7 +167,7 @@ public class InsertionSortTest {
         int[] array = {50, 40, 30, 20, 10, 0, -10, -20, -30, -40, -50};
         SortArray sortArray = new SortArray(array);
         long startTime = System.nanoTime();
-        ArrayList<int[]> result = sortArray.simpleSort(false);
+        ArrayList<int[]> result = sortArray.InsertionSort(false);
         long endTime = System.nanoTime();
         System.out.println("testInsertionSortLargeArray took " + (endTime - startTime) + " ns");
         assertArrayEquals(new int[]{-50, -40, -30, -20, -10, 0, 10, 20, 30, 40, 50}, result.get(0));
@@ -178,7 +178,7 @@ public class InsertionSortTest {
         int[] array = {Integer.MAX_VALUE, Integer.MIN_VALUE, 0, -1, 1};
         SortArray sortArray = new SortArray(array);
         long startTime = System.nanoTime();
-        ArrayList<int[]> result = sortArray.simpleSort(false);
+        ArrayList<int[]> result = sortArray.InsertionSort(false);
         long endTime = System.nanoTime();
         System.out.println("testInsertionSortArrayContainingMaxMinInteger took " + (endTime - startTime) + " ns");
         assertArrayEquals(new int[]{Integer.MIN_VALUE, -1, 0, 1, Integer.MAX_VALUE}, result.get(0));
@@ -189,7 +189,7 @@ public class InsertionSortTest {
         int[] array = {3, 1, 2, 4, -5};
         SortArray sortArray = new SortArray(array);
         long startTime = System.nanoTime();
-        ArrayList<int[]> result = sortArray.simpleSort(false);
+        ArrayList<int[]> result = sortArray.InsertionSort(false);
         long endTime = System.nanoTime();
         System.out.println("testInsertionSortArrayWithOneNegativeAtEnd took " + (endTime - startTime) + " ns");
         assertArrayEquals(new int[]{-5, 1, 2, 3, 4}, result.get(0));
@@ -200,7 +200,7 @@ public class InsertionSortTest {
         int[] array = {};
         SortArray sortArray = new SortArray(array);
         long startTime = System.nanoTime();
-        ArrayList<int[]> result = sortArray.simpleSort(false);
+        ArrayList<int[]> result = sortArray.InsertionSort(false);
         long endTime = System.nanoTime();
         System.out.println("testInsertionSortEmptyArray took " + (endTime - startTime) + " ns");
         assertArrayEquals(new int[]{}, result.get(0));
@@ -211,7 +211,7 @@ public class InsertionSortTest {
         int[] array = {1000000000, -1000000000, 500000000, -500000000, 0};
         SortArray sortArray = new SortArray(array);
         long startTime = System.nanoTime();
-        ArrayList<int[]> result = sortArray.simpleSort(false);
+        ArrayList<int[]> result = sortArray.InsertionSort(false);
         long endTime = System.nanoTime();
         System.out.println("testInsertionSortVeryLargeNumbers took " + (endTime - startTime) + " ns");
         assertArrayEquals(new int[]{-1000000000, -500000000, 0, 500000000, 1000000000}, result.get(0));

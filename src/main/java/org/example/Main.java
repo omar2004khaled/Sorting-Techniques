@@ -27,19 +27,23 @@ public class Main {
 
                 while (true) {
                     System.out.println("\n" + UNDERLINE + BOLD + CYAN + " Main Menu " + RESET);
-                    System.out.println(YELLOW + "1." + RESET + " Simple Sort (O(n²))");
-                    System.out.println(YELLOW + "2." + RESET + " Efficient Sort (O(n log n))");
-                    System.out.println(YELLOW + "3." + RESET + " Non-Comparison Sort (O(n))");
-                    System.out.println(YELLOW + "4." + RESET + " Exit");
+                    System.out.println(YELLOW + "1." + RESET + " Simple Sort Insertion sort (O(n²))");
+                    System.out.println(YELLOW + "2." + RESET + " Simple Sort Selection sort (O(n²))");
+                    System.out.println(YELLOW + "3." + RESET + " Simple Sort Bubble sort (O(n²))");
+                    System.out.println(YELLOW + "4." + RESET + " Efficient Sort Merge sort(O(n log n))");
+                    System.out.println(YELLOW + "5." + RESET + " Efficient Sort Quick sort(O(n log n))");
+                    System.out.println(YELLOW + "6." + RESET + " Non-Comparison Sort Radix sort (O(n))");
+                    System.out.println(YELLOW + "7." + RESET + " Non-Comparison Sort Counting sort (O(n))");
+                    System.out.println(YELLOW + "8." + RESET + " Exit");
                     System.out.print(BOLD + "Choose an option: " + RESET);
 
                     int choice = scanner.nextInt();
-                    while (choice > 4 || choice < 1) {
-                        System.out.print(RED + "Invalid option! Please enter (1,2,3,4): " + RESET);
+                    while (choice > 8 || choice < 1) {
+                        System.out.print(RED + "Invalid option! Please enter (1,2,3,4,5,6,7,8): " + RESET);
                         choice = scanner.nextInt();
                     }
 
-                    if (choice == 4) {
+                    if (choice == 8) {
                         System.out.println(BOLD + CYAN + "Exiting the program..." + RESET);
                         break;
                     }
@@ -55,9 +59,13 @@ public class Main {
                     long start = System.nanoTime();
                     ArrayList<int[]> result = new ArrayList<>();
                     switch (choice) {
-                        case 1 -> result = sortArray.simpleSort(returnIntermediate);
-                        case 2 -> result = sortArray.efficientSort(returnIntermediate);
-                        case 3 -> result = sortArray.nonComparisonSort(returnIntermediate);
+                        case 1 -> result = sortArray.InsertionSort(returnIntermediate);
+                        case 2 -> result = sortArray.SelectionSort(returnIntermediate);
+                        case 3 -> result = sortArray.BubbleSort(returnIntermediate);
+                        case 4 -> result = sortArray.MergeSort(returnIntermediate);
+                        case 5 -> result = sortArray.QuickSort(returnIntermediate);
+                        case 6 -> result = sortArray.RadixSort(returnIntermediate);
+                        case 7 -> result = sortArray.CountingSort(returnIntermediate);
                     }
                     long finish = System.nanoTime();
                     long timeElapsed = (finish - start) / 1000;
