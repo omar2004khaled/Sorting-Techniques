@@ -1,6 +1,5 @@
 package main.java.org.example;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,8 +21,8 @@ public class Main {
             String filePath = scanner.nextLine();
 
             try {
-                int[] array = readArrayFromFile(filePath);
-                SortArray sortArray = new SortArray(array);
+                // Initialize the SortArray with the file path
+                SortArray sortArray = new SortArray(filePath);
                 System.out.println(GREEN + "Array initialized successfully!" + RESET);
 
                 while (true) {
@@ -33,7 +32,7 @@ public class Main {
                     System.out.println(YELLOW + "3." + RESET + " Non-Comparison Sort (O(n))");
                     System.out.println(YELLOW + "4." + RESET + " Exit");
                     System.out.print(BOLD + "Choose an option: " + RESET);
-                    
+
                     int choice = scanner.nextInt();
                     while (choice > 4 || choice < 1) {
                         System.out.print(RED + "Invalid option! Please enter (1,2,3,4): " + RESET);
@@ -43,54 +42,6 @@ public class Main {
                     if (choice == 4) {
                         System.out.println(BOLD + CYAN + "Exiting the program..." + RESET);
                         break;
-                    }
-
-                    String algorithm = "";
-                    switch (choice) {
-                        case 1:
-                            System.out.println("\n" + UNDERLINE + "Simple Sort Algorithms:" + RESET);
-                            System.out.println("1. Insertion Sort");
-                            System.out.println("2. Selection Sort");
-                            System.out.println("3. Bubble Sort");
-                            System.out.print(BOLD + "Choose an algorithm: " + RESET);
-                            int simpleChoice = scanner.nextInt();
-                            while (simpleChoice > 3 || simpleChoice < 1) {
-                                System.out.print(RED + "Invalid option! Choose (1,2,3): " + RESET);
-                                simpleChoice = scanner.nextInt();
-                            }
-                            algorithm = switch (simpleChoice) {
-                                case 1 -> "InsertionSort";
-                                case 2 -> "SelectionSort";
-                                case 3 -> "BubbleSort";
-                                default -> "";
-                            };
-                            break;
-
-                        case 2:
-                            System.out.println("\n" + UNDERLINE + "Efficient Sort Algorithms:" + RESET);
-                            System.out.println("1. Merge Sort");
-                            System.out.println("2. Quick Sort");
-                            System.out.print(BOLD + "Choose an algorithm: " + RESET);
-                            int efficientChoice = scanner.nextInt();
-                            while (efficientChoice > 2 || efficientChoice < 1) {
-                                System.out.print(RED + "Invalid option! Choose (1,2): " + RESET);
-                                efficientChoice = scanner.nextInt();
-                            }
-                            algorithm = (efficientChoice == 1) ? "MergeSort" : "QuickSort";
-                            break;
-
-                        case 3:
-                            System.out.println("\n" + UNDERLINE + "Non-Comparison Sort Algorithms:" + RESET);
-                            System.out.println("1. Radix Sort");
-                            System.out.println("2. Counting Sort");
-                            System.out.print(BOLD + "Choose an algorithm: " + RESET);
-                            int nonComparisonChoice = scanner.nextInt();
-                            while (nonComparisonChoice > 2 || nonComparisonChoice < 1) {
-                                System.out.print(RED + "Invalid option! Choose (1,2): " + RESET);
-                                nonComparisonChoice = scanner.nextInt();
-                            }
-                            algorithm = (nonComparisonChoice == 1) ? "RadixSort" : "CountingSort";
-                            break;
                     }
 
                     System.out.print(BOLD + "Return intermediate arrays? (y/n): " + RESET);
@@ -104,9 +55,9 @@ public class Main {
                     long start = System.nanoTime();
                     ArrayList<int[]> result = new ArrayList<>();
                     switch (choice) {
-                        case 1 -> result = sortArray.simpleSort(returnIntermediate, algorithm);
-                        case 2 -> result = sortArray.efficientSort(returnIntermediate, algorithm);
-                        case 3 -> result = sortArray.nonComparisonSort(returnIntermediate, algorithm);
+                        case 1 -> result = sortArray.simpleSort(returnIntermediate);
+                        case 2 -> result = sortArray.efficientSort(returnIntermediate);
+                        case 3 -> result = sortArray.nonComparisonSort(returnIntermediate);
                     }
                     long finish = System.nanoTime();
                     long timeElapsed = (finish - start) / 1000;
@@ -130,17 +81,5 @@ public class Main {
                 System.out.println(RED + "Error: File not found!" + RESET);
             }
         }
-    }
-
-    private static int[] readArrayFromFile(String filePath) throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File(filePath));
-        String line = scanner.nextLine().trim();
-        String[] elements = line.split(","); // ignore commas
-        int[] array = new int[elements.length];
-        for (int i = 0; i < elements.length; i++) {
-            array[i] = Integer.parseInt(elements[i].trim()); // ignore spaces
-        }
-        scanner.close();
-        return array;
     }
 }
