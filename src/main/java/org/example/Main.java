@@ -59,13 +59,24 @@ public class Main {
                     long start = System.nanoTime();
                     ArrayList<int[]> result = new ArrayList<>();
                     switch (choice) {
-                        case 1 -> result = sortArray.InsertionSort(returnIntermediate);
-                        case 2 -> result = sortArray.SelectionSort(returnIntermediate);
-                        case 3 -> result = sortArray.BubbleSort(returnIntermediate);
-                        case 4 -> result = sortArray.MergeSort(returnIntermediate);
-                        case 5 -> result = sortArray.QuickSort(returnIntermediate);
-                        case 6 -> result = sortArray.RadixSort(returnIntermediate);
-                        case 7 -> result = sortArray.CountingSort(returnIntermediate);
+                        case 1 : result = sortArray.InsertionSort(returnIntermediate);
+                        break;
+                        case 2 : result = sortArray.SelectionSort(returnIntermediate);
+                        break;
+                        case 3 : result = sortArray.BubbleSort(returnIntermediate);
+                        break;
+                        case 4 : result = sortArray.MergeSort(returnIntermediate);
+                        break;
+                        case 5 : result = sortArray.QuickSort(returnIntermediate);
+                        break;
+                        case 6 : 
+                          if (hasNegativeValues(sortArray.getArray()) ){
+                            System.out.println(RED + "Error: Radix sort cannot be performed on arrays with negative values!" + RESET);
+                            continue;
+                        }
+                        result = sortArray.RadixSort(returnIntermediate);
+                        case 7 : result = sortArray.CountingSort(returnIntermediate);
+                        break;
                     }
                     long finish = System.nanoTime();
                     long timeElapsed = (finish - start) / 1000;
@@ -88,6 +99,16 @@ public class Main {
             } catch (FileNotFoundException e) {
                 System.out.println(RED + "Error: File not found!" + RESET);
             }
+
         }
+        
+    }
+    private static boolean hasNegativeValues(int[] array) {
+        for (int value : array) {
+            if (value < 0) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -20,6 +20,9 @@ public class SortArray {
         this.array = Arrays.copyOf(array, array.length);
         this.originalArray = Arrays.copyOf(array, array.length); // Store a copy of the original array
     }
+    public int[] getArray() {
+        return Arrays.copyOf(array, array.length);
+    }
 
     // Helper method to read an array from a file
     private int[] readArrayFromFile(String filePath) throws FileNotFoundException {
