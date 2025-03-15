@@ -42,75 +42,22 @@ public class SortArray {
     // Simple Sort: O(n²) algorithms
     public ArrayList<int[]> simpleSort(boolean returnIntermediate) {
         resetArray(); // Reset the array before sorting
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("\n" + "Simple Sort Algorithms:");
-        System.out.println("1. Insertion Sort");
-        System.out.println("2. Selection Sort");
-        System.out.println("3. Bubble Sort");
-        System.out.print("Choose an algorithm: ");
-        int choice = scanner.nextInt();
-        while (choice > 3 || choice < 1) {
-            System.out.print("Invalid option! Choose (1,2,3): ");
-            choice = scanner.nextInt();
+        return InsertionSort.sort(array, returnIntermediate);
+            
         }
-
-        switch (choice) {
-            case 1:
-                return InsertionSort.sort(array, returnIntermediate);
-            case 2:
-                return SelectionSort.sort(array, returnIntermediate);
-            case 3:
-                return BubbleSort.sort(array, returnIntermediate);
-            default:
-                throw new IllegalArgumentException("Invalid simple sort algorithm");
-        }
-    }
+    
 
     // Efficient Sort: O(n log n) algorithms
     public ArrayList<int[]> efficientSort(boolean returnIntermediate) {
         resetArray(); // Reset the array before sorting
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("\n" + "Efficient Sort Algorithms:");
-        System.out.println("1. Merge Sort");
-        System.out.println("2. Quick Sort");
-        System.out.print("Choose an algorithm: ");
-        int choice = scanner.nextInt();
-        while (choice > 2 || choice < 1) {
-            System.out.print("Invalid option! Choose (1,2): ");
-            choice = scanner.nextInt();
-        }
-
-        switch (choice) {
-            case 1:
-                return MergeSort.sort(array, returnIntermediate);
-            case 2:
-                return QuickSort.sort(array, returnIntermediate);
-            default:
-                throw new IllegalArgumentException("Invalid efficient sort algorithm");
-        }
+        return MergeSort.sort(array, returnIntermediate);
+           
     }
 
     // Non-Comparison Sort: O(n) algorithms
     public ArrayList<int[]> nonComparisonSort(boolean returnIntermediate) {
         resetArray(); // Reset the array before sorting
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("\n" + "Non-Comparison Sort Algorithms:");
-        System.out.println("1. Radix Sort");
-        System.out.println("2. Counting Sort");
-        System.out.print("Choose an algorithm: ");
-        int choice = scanner.nextInt();
-        while (choice > 2 || choice < 1) {
-            System.out.print("Invalid option! Choose (1,2): ");
-            choice = scanner.nextInt();
-        }
-
-        switch (choice) {
-            case 1:
-                return RadixSort.sort(array, returnIntermediate);
-            case 2:
-                return CountingSort.sort(array, returnIntermediate);
-            default:
-                throw new IllegalArgumentException("Invalid non-comparison sort algorithm");
-        }
+        return RadixSort.sort(array, returnIntermediate);
+           
     }
 }

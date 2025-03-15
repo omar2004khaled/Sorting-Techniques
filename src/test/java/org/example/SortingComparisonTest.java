@@ -23,7 +23,7 @@ public class SortingComparisonTest {
                 int[] clonedArray = array.clone();
                 long startTime = System.nanoTime();
                 SortArray InsertionSortArray = new SortArray(clonedArray);
-                ArrayList<int[]> temp = InsertionSortArray.simpleSort(false,"InsertionSort");       
+                ArrayList<int[]> temp = InsertionSortArray.simpleSort(false);       
                 long endTime = System.nanoTime();
                 totalTime += (endTime - startTime);
                 if (i == repeat-1)  
@@ -45,7 +45,7 @@ public class SortingComparisonTest {
                 int[] clonedArray = array.clone();
                 long startTime = System.nanoTime();
                 SortArray MergeSortArray = new SortArray(clonedArray);
-                ArrayList<int[]> temp = MergeSortArray.efficientSort(false,"MergeSort");       
+                ArrayList<int[]> temp = MergeSortArray.efficientSort(false);       
                 long endTime = System.nanoTime();
                 totalTime += (endTime - startTime);
                 if (i == repeat-1)
@@ -67,7 +67,7 @@ public class SortingComparisonTest {
                 int[] clonedArray = array.clone();
                 long startTime = System.nanoTime();
                 SortArray SortArrayRadix = new SortArray(clonedArray);
-                ArrayList<int[]> temp = SortArrayRadix.nonComparisonSort(false,"RadixSort");
+                ArrayList<int[]> temp = SortArrayRadix.nonComparisonSort(false);
                 long endTime = System.nanoTime();
                 totalTime += (endTime - startTime);
                 if (i == repeat-1)
