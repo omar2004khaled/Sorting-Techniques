@@ -75,6 +75,7 @@ public class Main {
                             continue;
                         }
                         result = sortArray.RadixSort(returnIntermediate);
+                        break;
                         case 7 : result = sortArray.CountingSort(returnIntermediate);
                         break;
                     }

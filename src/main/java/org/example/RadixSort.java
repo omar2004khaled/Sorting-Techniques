@@ -14,8 +14,11 @@ public class RadixSort {
         for (int exp = 1; max / exp > 0; exp *= 10) {
             countingSort(array, exp);
 
-            if (returnIntermediate)
-                intermediateArrays.add(Arrays.copyOf(array, array.length));
+            if (returnIntermediate) {
+                int[] intermediateArray = Arrays.copyOf(array, array.length);
+                intermediateArrays.add(intermediateArray);
+                //System.out.println("Intermediate array: " + Arrays.toString(intermediateArray));
+            }
         }
 
         if (!returnIntermediate)
@@ -44,7 +47,7 @@ public class RadixSort {
             array[i] = output[i];
         }
     }
-} 
+}
 
     
 /*package main.java.org.example;
